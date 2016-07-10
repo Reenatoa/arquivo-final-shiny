@@ -131,6 +131,7 @@ server <- shinyServer(
       }
       Xbar<-mean(X)
       Xvar <- var(X)
+      chute<-c()
       chute[1] <- (Xbar*(1-Xbar) - Xvar)*Xbar/Xvar
       chute[2] <- chute[1]*(1-Xbar)/Xbar
       Hat<-optim(par=chute,fn=MLE,method="BFGS",control=list(fnscale=-1))$par
@@ -637,7 +638,7 @@ ui <- shinyUI(navbarPage("T\u00F3picos de Infer\u00EAncia",
                                                                       withMathJax(p("O gr\u00E1fico abaixo representa a fun\u00E7\u00E3o de log-verossimlhan\u00E7a
                                                                                     da distribui\u00E7\u00E3o Beta dado por $$ l(\\alpha,\\beta|x_1,x_2,...,x_n)=(\\alpha-1)\\sum_{i=1}^{n}log(x_i) + ((\\beta-1)\\sum_{i=1}^{n}log(1-x_i)) - nlog(B(\\alpha,\\beta))   $$"),
                                                                                   p("O gr\u00E1fico \u00E9 criado a partir de uma amostra aleat\u00F3ria de tamanho n, retirada de uma distribui\u00E7\u00E3o com os par\u00E2metros  	\u03B1 e  	\u03B2 especificados ao lado. A tabela abaixo, mostra as estimativas e erros padr\u00F5es obtidos usando o m\u00E9todo de M\u00E2xima Verossimilhan\u00E7a")),
-                                                                   column(6,   plotOutput("beta")),column(6,tableOutput("estimabeta")),
+                                                                   column(6,   plotOutput("beta")),column(9,tableOutput("estimabeta")),
                                                                       br()
                                                                       )
                                                                       
